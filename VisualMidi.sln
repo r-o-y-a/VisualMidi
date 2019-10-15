@@ -1,7 +1,7 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisualMidi.WebApi", "VisualMidi\VisualMidi.WebApi.csproj", "{092FE1C2-BC7B-4AE4-9907-A402E6A745B6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisualMidi.WebApi", "VisualMidi.WebApi\VisualMidi.WebApi.csproj", "{092FE1C2-BC7B-4AE4-9907-A402E6A745B6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisualMidi.Core", "VisualMidi.Core\VisualMidi.Core.csproj", "{3544003A-92FB-4407-91A1-7741F2BEF9AD}"
 EndProject
