@@ -1,5 +1,4 @@
-﻿using System;
-namespace VisualMidi.Core.Entities
+﻿namespace VisualMidi.Core.Models
 {
     public class MidiFile
     {

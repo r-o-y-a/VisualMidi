@@ -6,12 +6,15 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.Swagger;
+using VisualMidi.Core.Models;
 using VisualMidi.Core.Services;
+using VisualMidi.WebApi;
 
 namespace VisualMidi
 {
@@ -27,8 +30,12 @@ namespace VisualMidi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IMidiFileService, MidiFileService>();
+            //services.AddSingleton<IMidiFileService, MidiFileService>();
+            services.AddDbContext<MidiFileContext>(opt => opt.UseInMemoryDatabase("MidiFileList"));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            // service lifetime is once per request
+            // fixes "cannot consume scoped service (DBContext) from singleton (IMidiFileService)
+            services.AddScoped<IMidiFileService, MidiFileService>();
 
             services.AddSwaggerGen(c =>
             {
@@ -38,7 +45,11 @@ namespace VisualMidi
                     Title = "Visual Midi File API",
                     Description = "Manage files for Visual Midi"
                 });
+
+                c.OperationFilter<SwaggerFileOperationFilter>();
             });
+
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
